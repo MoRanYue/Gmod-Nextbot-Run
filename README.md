@@ -2,7 +2,7 @@
 
 [简体中文](Readme-chinese.md "简体中文") [English](Readme.md "English") 
 
-A VERY VERY POPULAR GAMEMODE IN GARRY'S MOD IN 2022.
+A VERY VERY POPULAR GAMEPLAY IN GARRY'S MOD IN 2022.
 
 ---
 

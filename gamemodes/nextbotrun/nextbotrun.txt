@@ -1,0 +1,31 @@
+"nextbotrun"
+{
+	"base"		"base"
+	"title"		"逃离Nextbot / Nextbot Run"
+	"maps"		"^nbr_|gm_mallparking"
+	"category"	"other"
+	"menusystem"	"1"
+	"workshopid"	"114514"
+
+	"settings"
+	{
+		1
+		{
+			"name"		"nbr_npc"
+			"text"		"Max NPCs"
+			"help"		"The maxiumum number of NPCs on a map, if it's -1, it mean infinity."
+			"type"		"Numeric"
+			"default"	"-1"
+		}
+
+		
+		2
+		{
+			"name"		"nbr_configmode"
+			"text"		"Debug or config mode"
+			"help"		"If enabled, it will allow players open the spawnmenu and edit the Nextbots."
+			"type"		"CheckBox"
+			"default"	"0"
+		}
+	}
+}

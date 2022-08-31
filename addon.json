@@ -1,0 +1,15 @@
+{
+	"title": "Escape From Nextbot [Gamemode]",
+	"type": "gamemode",
+	"tags": ["fun", "scenic"],
+	"ignore":
+	[
+		"*.js",
+		"*.bat",
+		"*.git*",
+		"*.psd",
+
+		"*readme.txt*",
+		"*workshop512.jpg*"
+	]
+}

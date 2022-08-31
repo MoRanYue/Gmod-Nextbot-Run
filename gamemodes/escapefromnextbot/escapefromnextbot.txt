@@ -1,0 +1,16 @@
+"escapefromnextbot"
+{
+	"base"		"base"
+	"title"		"Escape From Nextbot"
+	"maps"		"^nbr_|^gm_"
+	"category"	"pve"
+	"menusystem"	"1"
+	"workshopid"	"2854106305"
+
+	"author_name"		"墨染月"
+	"author_email"		"2627706725@qq.com"
+
+	"settings"
+	{
+	}
+}

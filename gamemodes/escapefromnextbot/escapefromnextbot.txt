@@ -2,7 +2,7 @@
 {
 	"base"		"base"
 	"title"		"Escape From Nextbot"
-	"maps"		"^nbr_|^gm_"
+	"maps"		"^nbr_|^efn_|^gm_"
 	"category"	"pve"
 	"menusystem"	"1"
 	"workshopid"	"2854106305"

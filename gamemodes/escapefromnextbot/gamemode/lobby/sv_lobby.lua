@@ -2,8 +2,10 @@ util.AddNetworkString("open_lobby")
 -- util.AddNetworkString("start_game")
 
 function enterLobby(ply)
-    net.Start("open_lobby")
-    net.Send(ply)
+    timer.Simple(1.7, function()
+        net.Start("open_lobby")
+        net.Send(ply)
+    end)
 end
 
 net.Receive("start_game", function(len, ply)

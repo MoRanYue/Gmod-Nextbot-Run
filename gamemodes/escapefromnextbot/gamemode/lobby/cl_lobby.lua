@@ -1,4 +1,4 @@
-net.Receive("open_lobby", timer.Simple(2, openLobby))
+net.Receive("open_lobby", openLobby)
 
 surface.CreateFont("BM_Large", {
     font = "Tahoma",

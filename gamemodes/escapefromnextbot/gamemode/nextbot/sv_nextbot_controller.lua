@@ -5,22 +5,26 @@ local nbMax = NBR.nb.maxnpcs
 local nextbotStatus = 0
 local players = player.GetAll()
 
+util.AddNetworkString("nbInfo")
+util.AddNetworkString("req_nbInfo")
+
 --计时器
 local t = 0
 local interval = NBR.nb.refresh_nb_interval
--- local isSpawning = false
 
 --nb Config
-local spawnPos = Vector(0, 0, 0)
-if (NBR.nb.spawnpos[game:GetMap()]) then
-    spawnPos = NBR.nb.spawnpos[game:GetMap()]
-else
-    spawnPos = ents.FindByClass("info_player_start")[math.random(#ents.FindByClass("info_player_start"))]:GetPos()
-end
 local spawnNb = table.Add(NBR.nb.nextbot, util.JSONToTable(file.Read("efn_nextbot.json", "DATA")))
 
-util.AddNetworkString("nbInfo")
-util.AddNetworkString("req_nbInfo")
+function getSpawnPos()
+    if (NBR.nb.spawnpos[game:GetMap()]) then
+        return NBR.nb.spawnpos[game:GetMap()]
+    else
+        local plySpawnPoint = ents.FindByClass("info_player_start")
+        local nbSpawnPos = plySpawnPoint[math.random(table.Count(plySpawnPoint))]
+        return nbSpawnPos:GetPos()
+    end
+end
+local spawnPos = getSpawnPos()
 
 hook.Add("OnNPCKilled", "updNbInfoOnPlyRemove", function(npc, atk, int)
     if (npc:IsValid()) then

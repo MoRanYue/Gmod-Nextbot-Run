@@ -20,7 +20,6 @@ NBR.nb.nextbot = {
 NBR.nb.spawnpos = {
     -- ["exampleMap"] = Vector(114514, 1918, 810),
     ["gm_construct"] = Vector(-78, -1112, -79),
-    ["gm_flatgrass"] = Vector(0, 0, 0),
     ["gm_mallparking"] = Vector(-13, 755, 192),
     ["gm_poolrooms"] = Vector(556, 861, 161),
     ["gm_backrooms"] = Vector(-5796, 6377, 64),

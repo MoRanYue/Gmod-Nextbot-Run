@@ -7,6 +7,7 @@ A VERY VERY POPULAR GAMEPLAY IN GARRY'S MOD IN 2022.
 ---
 
 It's code of my created gamemode "Escape From Nextbot" in Garry's mod.
+Steam Workshop Link: [Escape From Nextbot](https://steamcommunity.com/sharedfiles/filedetails/?id=2854106305 "Escape From Nextbot")
 
 ---
 

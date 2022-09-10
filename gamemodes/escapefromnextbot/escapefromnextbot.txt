@@ -1,8 +1,8 @@
 "escapefromnextbot"
 {
 	"base"		"base"
-	"title"		"Escape From Nextbot"
-	"maps"		"^nbr_|^efn_|^gm_"
+	"title"		"逃离贴图怪 | Escape From Nextbot"
+	"maps"		"^nbr_|^efn_|gm_mallparking|^gm_backrooms?|^gm_"
 	"category"	"pve"
 	"menusystem"	"1"
 	"workshopid"	"2854106305"

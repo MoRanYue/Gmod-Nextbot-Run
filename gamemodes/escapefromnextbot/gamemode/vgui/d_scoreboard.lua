@@ -58,9 +58,13 @@ function scoreboard:show()
         --deathCount
         draw.DrawText(translate.Format("hud_death_count", LocalPlayer():Deaths()), "HYWH_Small", w*0.52, h*0.135, color_white, TEXT_ALIGN_CENTER)
         --aliveTime
-        draw.DrawText(translate.Format("text_ply_alive_time", translateTime(CurTime() - LocalPlayer():GetNWInt("efn_start_alivetime"))), "HYWH_Small", w*0.8, h*0.135, color_white, TEXT_ALIGN_CENTER)
+        if (LocalPlayer():Alive()) then
+            draw.DrawText(translate.Format("text_ply_alive_time", translateTime(CurTime() - LocalPlayer():GetNWInt("efn_start_alivetime"))), "HYWH_Small", w*0.8, h*0.135, color_white, TEXT_ALIGN_CENTER)
+        else
+            draw.DrawText(translate.Get("text_sb_ply_dead"), "HYWH_Small", w*0.8, h*0.135, color_white, TEXT_ALIGN_CENTER)
+        end
     end
-    
+
     -- local gmText = vgui.Create("DLabel", panel)
     -- -- gmText:SetPos(10, 3)
     -- gmText:SetFont("BM_Small")
@@ -145,7 +149,11 @@ function scoreboard:show()
             draw.SimpleText(v:Name(), "BM_Small", 100, 0, Color(255, 200, 255))
             draw.SimpleText(v:GetUserGroup(), "BM_Small", 300, 0, Color(255, 200, 255))
             draw.SimpleText(v:Deaths(), "BM_Small", 450, 0, Color(255, 12, 11))
-            draw.SimpleText(translateTime(CurTime() - v:GetNWInt("efn_start_alivetime")), "BM_Small", 570, 0, Color(255, 200, 255))
+            if (!v:GetNWBool("efn_is_dead")) then
+                draw.SimpleText(translateTime(CurTime() - v:GetNWInt("efn_start_alivetime")), "BM_Small", 570, 0, Color(255, 200, 255))
+            else
+                draw.SimpleText(translate.Get("text_sb_ply_dead"), "BM_Small", 570, 0, Color(255, 29, 26))
+            end
             draw.SimpleText(v:Ping(), "BM_Small", 850, 0, Color(255, 0, 255))
         end
     end

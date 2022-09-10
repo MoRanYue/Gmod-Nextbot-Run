@@ -1,5 +1,3 @@
-net.Receive("open_lobby", openLobby)
-
 surface.CreateFont("BM_Large", {
     font = "Tahoma",
     size = ScreenScale(15),
@@ -16,7 +14,7 @@ surface.CreateFont("BM_Small", {
     weight = 500
 })
 
-function openLobby()
+net.Receive("open_lobby", function()
     -- 创建vgui
     local frame = vgui.Create("DFrame")
     frame:SetSize(ScrW(), ScrH())
@@ -27,6 +25,8 @@ function openLobby()
     frame:SetTitle("")
     frame.Paint = function(s, w, h)
         draw.RoundedBox(0, 0, 0, w, h, Color(200, 200, 200, 255))
+
+        draw.DrawText(string.gsub(translate.Get("text_server_title"), "{server}", GetHostName()), "BM_Medium", ScrW()/2, ScrH()/3, color_black, TEXT_ALIGN_CENTER)
     end
     frame:MakePopup()
 
@@ -39,17 +39,4 @@ function openLobby()
     startButton.DoClick = function()
         frame:Close()
     end
-
-    local svTitle = vgui.Create("DLabel", frame)
-    -- svTitle:SetPos(ScrW()/2 - 200, ScrH()/2)
-    svTitle:CenterHorizontal()
-    -- svTitle:SetSize(200, 75)
-    -- svTitle:SetPos(ScrW()/2, ScrH()/3 - (75/2))
-    svTitle:SetFont("BM_Medium")
-    svTitle:Center()
-    -- TrAnSlAtEaBlE
-    svTitle:SetText(string.gsub(translate.Get("text_server_title"), "{server}", GetHostName()))
-    -- svTitle:Center()
-    svTitle:SizeToContents()
-    svTitle:SetTextColor(Color(114, 51, 4))
-end
+end)

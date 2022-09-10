@@ -1,6 +1,6 @@
 SWEP.PrintName = "Parkour ADDON INCLUDED"
 SWEP.Author = "Digaly"
-SWEP.Instructions = "装备这个可以用来跑酷哦~"
+SWEP.Instructions = "PLZ!"
 SWEP.Spawnable = true
 SWEP.AdminOnly = false
 

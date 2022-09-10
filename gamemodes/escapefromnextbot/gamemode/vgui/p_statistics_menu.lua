@@ -63,7 +63,7 @@ net.Receive("openSMenu", function(len)
         nbPanel:SetSize(list:GetWide(), 15)
         nbPanel:SetPos(0, 0)
         nbPanel.Paint = function(s, w, h)
-            draw.RoundedBox(0, 0, 0, nbPanel:GetWide(), nbPanel:GetTall(), color_green)
+            draw.RoundedBox(0, 0, 0, nbPanel:GetWide(), nbPanel:GetTall(), Color(16, 255, 15))
             draw.RoundedBox(0, 0, 14, nbPanel:GetWide(), 2, Color(200, 200, 200))
 
             draw.SimpleText(k, "DermaDefault", 4, 0, Color(20, 20, 20), 0, 0)

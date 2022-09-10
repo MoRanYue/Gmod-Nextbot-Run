@@ -12,7 +12,21 @@ util.AddNetworkString("req_nbInfo")
 local t = 0
 local interval = NBR.nb.refresh_nb_interval
 
-local spawnNb = table.Inherit(NBR.nb.nextbot, util.JSONToTable(file.Read("efn_nextbot.json", "DATA")))
+local spawnNb = NBR.nb.nextbot
+table.Merge(spawnNb, util.JSONToTable(file.Read("efn_nextbot.json", "DATA")))
+
+if (NBR.nb.detect_nextbot) then
+    local allSpawnNb = allSpawnNb or {}
+    for k, v in pairs(list.Get("NPC")) do
+        if (string.match(v["Category"], "[N|n]extbots*") && !string.match(k, "tf2?")) then
+            table.insert(allSpawnNb, k)
+        end
+    end
+    table.Merge(spawnNb, allSpawnNb)
+
+    print(translate.Format("server_auto_detect_nb", table.ToString(spawnNb)))
+end
+
 function getSpawnPos()
     if (NBR.nb.spawnpos[game:GetMap()]) then
         return NBR.nb.spawnpos[game:GetMap()]
@@ -24,15 +38,30 @@ function getSpawnPos()
 end
 
 hook.Add("OnNPCKilled", "updNbInfoOnPlyRemove", function(npc, atk, int)
-    if (npc:IsValid()) then
-        if (npc:IsNextBot()) then
-            nbCount = nbCount - 1
+    if ((npc:IsValid() && atk:IsValid()) && atk:IsPlayer()) then
+        for k, v in pairs(player.GetAll()) do
+            v:PrintMessage(HUD_PRINTTALK, translate.ClientFormat(v, "notify_ply_is_killing_nb", atk:Name(), npc:Classify()))
         end
+
+        --deny no admin player kill nextbot
+        if (npc:IsNextBot() && !atk:IsAdmin()) then
+            --respawn it
+            local temp = ents.Create(npc:Classify())
+            temp:SetPos(spawnPos)
+            temp:Spawn()
+
+            --notify the player
+            atk:PrintMessage(HUD_PRINTTALK, translate.ClientGet(atk, "notify_stop_killing_nb"))
+        end
+        nbCount = nbCount - 1
+        atk:PrintMessage(HUD_PRINTTALK, translate.ClientGet(atk, "notify_killed_nb"))
     end
 end)
 
 function spawnNextbot(count, isadmin)
     local expectVal = count + nbCount
+
+    -- print("spawning!!!!")
 
     local spawnPos = getSpawnPos()
     --It's no use now.
@@ -65,7 +94,7 @@ function spawnNextbot(count, isadmin)
                 temp = ents.Create(spawnNb[math.random(#spawnNb)])
                 temp:SetPos(spawnPos)
                 temp:Spawn()
-                temp:SetNWInt("kill_count", 0)
+                -- temp:SetNWInt("kill_count", 0)
                 nbCount = nbCount + 1
             end
 
@@ -115,7 +144,7 @@ hook.Add("Think", "nbThink", function()
     if (nextbotStatus == 0 && !NBR.advance.code_debug) then
         if t < CurTime() then
             t = CurTime() + interval
-
+        
             cleanNextbot()
             timer.Simple(10, function()
                 math.randomseed(tostring(SysTime()):reverse():sub(1, 6))
